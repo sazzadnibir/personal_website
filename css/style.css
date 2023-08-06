@@ -1,0 +1,687 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni&family=Montserrat&display=swap');
+
+:root {
+    --main-color: #5f27cd;
+    --secondary-color: #ff4757;
+    --grey-color: #8f8f8f;
+    --light-color: #ededed;
+    --dark-color: #2f3542;
+
+    --main-box-shadow: rgb(53 38 77 / 30%) 0 20px 30px -10px;
+    --secondary-box-shadow: 0 20px 40px 0 rgb(1 1 1 / 10%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--dark-color);
+}
+
+h1 {
+    font-size: clamp(1.75em, 6vw, 3.15em);
+}
+
+h2 {
+    font-size: clamp(1.5em, 3vw, 2.5em);
+}
+
+h3 {
+    font-size: 2.15em;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.25;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2em;
+}
+
+/* 01. Header ====================== */
+.site > header {
+    line-height: 100px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    /* background-color: var(--main-color); */
+}
+
+header :where(nav, .menu, .menu ul) {
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    justify-content: space-between;
+}
+
+/* a. Header: logo ================= */
+.logo a {
+    font-size: 1.75em;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.logo a span {
+    color: var(--dark-color);
+    opacity: 0.5;
+}
+
+nav :where(.logo, .menu li) a,
+.hero .slide :where(.meta, .author) {
+    color: #fff;
+}
+
+/* b. Header: menu ================= */
+.menu li {
+    position: relative;
+    width: 100%;
+}
+
+.menu li a {
+    display: flex;
+    line-height: initial;
+    font-size: 1.25em;
+    padding: 0.5em 1em;
+    transition: color 0.3s;
+}
+
+nav .menu-trigger,
+.menu .search-trigger,
+.search .search-close {
+    width: 36px;
+    height: 36px;
+    padding: 0.4em;
+    display: flex;
+    align-items: center;
+    font-size: 1.25em;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+nav :where(.menu-trigger, .search-trigger):hover,
+.search .search-close:hover {
+    background-color: rgb(255 255 255 / 20%);
+}
+
+.menu .has-child > a {
+    position: relative;
+    padding-right: 2em;
+}
+
+.menu .has-child::before,
+.menu .has-child::after,
+.swiper .swiper-pagination .swiper-pagination-bullet-active::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    top: 10px;
+    right: 0.5em;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+}
+
+.menu .has-child::after {
+    transform: scale(2);
+    opacity: 0.5;
+}
+
+.menu ul ul li {
+    width: 100%;
+}
+
+/* c. Header: search =============== */
+.menu .search-trigger {
+    position: absolute;
+    right: 70px;
+}
+
+/* d. Header: fixed header ========= */
+header.fixed {
+    line-height: 60px;
+    background-color: var(--main-color);
+    z-index: 1100;
+    animation: show 0.3s;
+}
+
+@keyframes show {
+    0%          { transform: translateY(-60px); }
+    100%        { transform: translateY(0); }
+}
+
+/* 02. Hero ======================== */
+.hero {
+    position: relative;
+    height: 850px;
+    background-color: var(--main-color);
+}
+
+.hero .slide {
+    position: fixed;
+    width: 100%;
+    padding-top: 200px;
+    text-align: center;
+}
+
+.hero .slide::before,
+.hero .slide::after,
+.profile::before,
+.profile::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(0 0 0 / 10%);
+    left: 50%;
+    top: 60%;
+    margin: -100px;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.hero .slide::after,
+.profile::after {
+    transform: scale(2);
+}
+
+.hero .slide .wrapper {
+    max-width: 830px;
+    margin: 0 auto;
+    padding: 0 2.5em;
+}
+
+.hero .slide .swiper {
+    padding-bottom: 75px;
+}
+
+.hero .slide :where(li, .heading) {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5em;
+}
+
+.hero .slide :where(h1, h2) {
+    font-size: clamp(1.75em, 6vw, 3em);
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.hero .slide li h2 a,
+.title a {
+    background-image: linear-gradient(transparent 98%, var(--secondary-color) 2%);
+    background-repeat: no-repeat;
+    background-size: 0 100%;
+    transition: all 0.7s;
+}
+
+.hero .slide li h2 a:hover,
+.title a:hover {
+    background-size: 100% 100%;
+}
+
+.meta span {
+    font-family: 'Libre Bodon', serif;
+    position: relative;
+    display: inline-block;
+    padding: 0 1em;
+}
+
+.meta span::before {
+    content: '';
+    position: absolute;
+    top: 11px;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    background-color: var(--dark-color);
+    border-radius: 50%;
+    opacity: 0.35;
+}
+
+.slide .meta span::before {
+    left: -4px;
+}
+
+.slide .meta span:first-child::before {
+    content: none;
+}
+
+.meta a:hover,
+.single .author a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    font-size: 12px;
+    font-weight: 500;
+    width: 150px;
+    display: inline-block;
+    text-align: center;
+    line-height: 42px;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.read-more {
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: var(--dark-color);
+    margin: 0 auto;
+    box-shadow: var(--main-box-shadow);
+}
+
+.read-more:hover {
+    background-color: transparent;
+    color: #fff;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+    position: relative;
+    background-color: var(--secondary-color);
+}
+
+.swiper .swiper-pagination .swiper-pagination-bullet-active::before {
+    width: 8px;
+    height: 8px;
+    top: 0;
+    left: 0;
+    transform: scale(2);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* 03. Section ===================== */
+.section {
+    position: relative;
+    background-color: #f1f2f6;
+    z-index: 1003;
+}
+
+.section .container {
+    position: relative;
+    top: -175px;
+}
+
+/* a. Section: main ================ */
+.section main {
+    position: relative;
+    padding: 100px 0;
+    background-color: #fff;
+    box-shadow: var(--secondary-box-shadow);
+    overflow: hidden;
+}
+
+.section main::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    top: -450px;
+    left: 50%;
+    margin-left: -250px;
+}
+
+.section main h3 {
+    position: relative;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 2.5em;
+    padding-bottom: 1.5em;
+}
+
+.section main h3::before,
+.section main article::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 50px;
+    height: 1px;
+    margin-left: -25px;
+    background-color: var(--light-color);
+}
+
+.section main :where(.post-list, .comment-form) {
+    max-width: 728px;
+    margin: 0 auto;
+    padding: 0 2em;
+}
+
+.section main article {
+    position: relative;
+    padding-bottom: 75px;
+    margin-bottom: 75px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section main h2 {
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+}
+
+.section main .meta {
+    color: var(--grey-color);
+    margin-bottom: 1em;
+}
+
+article .content {
+    font-family: 'Libre Bodon', serif;
+    font-size: 18px;
+}
+
+article .content p {
+    margin: 1.5em 0;
+}
+
+article footer .read-more,
+.comment-form form .submit {
+    background-color: var(--main-color);
+    margin: 2em 0 0;
+    color: #fff;
+    border-color: transparent;
+}
+
+article footer .read-more:hover {
+    border-color: var(--main-color);
+    color: var(--main-color)
+}
+
+article footer .read-more:hover {
+    border-color: var(--main-color);
+    color: var(--main-color);
+}
+
+.section main .pagination {
+    text-align: center;
+}
+
+.section main .pagination button {
+    border: 0;
+    background-color: var(--light-color);
+    cursor: pointer;
+}
+
+.section main .pagination button:hover {
+    background-color: var(--dark-color);
+    color: #fff;
+    box-shadow: var(--main-box-shadow);
+}
+
+/* Show only 3 articles */
+.section main article:nth-child(3) ~ article {
+    display: none;
+}
+
+/* b. Section: footer ============== */
+.section .container > footer {
+    text-align: center;
+    padding-top: 75px;
+    color: var(--grey-color);
+}
+
+footer .copyright {
+    font-size: 14px;
+}
+
+/* 04. Responsive Menu ============= */
+.menu,
+.menu ul {
+    flex-direction: column;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100vh;
+    background-color: var(--dark-color);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1010;
+
+    visibility: hidden;
+    transform: translate3d(100%, 0, 0);
+    transition: transform 0.2s, visibility 0.2s;
+}
+
+.show-menu .menu {
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+}
+
+.show-menu .menu-trigger {
+    z-index: 10001;
+}
+
+.show-menu .section {
+    z-index: 0;
+}
+
+.show-menu .search-trigger,
+.show-menu .menu-trigger i:first-child,
+.menu-trigger i:last-child {
+    display: none;
+}
+
+.show-menu .menu-trigger i:last-child {
+    display: block;
+}
+
+.overflow-me {
+    overflow: hidden;
+}
+
+.menu > ul {
+    font-weight: 500;
+    width: 100%;
+    padding: 0 1em;
+    gap: 1em;
+}
+
+/* a. profile ====================== */
+.profile {
+    position: relative;
+    display: flex;
+    font-size: 80%;
+    width: 100%;
+    color: #fff;
+    line-height: 1.8;
+    padding: 5em 3em 2em;
+    margin-bottom: 2em;
+}
+
+.profile::before,
+.profile::after {
+    left: 50px;
+}
+
+.profile img {
+    width: 75px;
+    height: 75px;
+    margin-right: 1.5em;
+    border-radius: 50%;
+}
+
+/* b. sub menu ===================== */
+.menu ul ul {
+    padding-left: 1.5em;
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height 200ms cubic-bezier(0, 1, 0, 1);
+    transition: max-height 200ms cubic-bezier(0, 1, 0, 1);
+}
+
+.menu li.expand > ul {
+    max-height: 600px;
+    -webkit-transition: max-height 200ms cubic-bezier(1, 0, 1, 0);
+    transition: max-height 200ms cubic-bezier(1, 0, 1, 0);
+}
+
+.menu ul ul li a {
+    font-size: 1em;
+}
+
+/* 05. Single Page ================= */
+.single .author {
+    margin-top: 2em;
+}
+
+.single .author img {
+    width: 75px;
+    border-radius: 50%;
+    margin-bottom: 0.5em;
+    box-shadow: var(--main-box-shadow);
+}
+
+.single article figure figcaption {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    padding: 0.5em 0 0;
+}
+
+.single .tags a {
+    max-width: fit-content;
+    font-size: 10px;
+    padding: 0 2em;
+    margin: 0 7px 7px 0;
+    line-height: 32px;
+    background-color: var(--light-color);
+}
+
+.single .tags a:hover {
+    background-color: var(--main-color);
+    color: #fff;
+}
+
+/* a. Single Page: comment form ==== */
+.comment-form h3 {
+    text-transform: uppercase;
+}
+
+.comment-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    font-size: 14px;
+}
+
+.comment-form form .wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 -1em;
+}
+
+.comment-form form .wrapper p {
+    padding: 0 1em;
+    margin-bottom: 1.5em;
+}
+
+.comment-form form :where(.wrapper input, textarea) {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    line-height: 43px;
+    outline: 0;
+    padding: 0 1.5em;
+    border: 1px solid var(--light-color);
+}
+
+.comment-form form .submit {
+    cursor: pointer;
+}
+
+.comment-form form .submit:hover {
+    background-color: transparent;
+    border-color: var(--main-color);
+    color: var(--main-color);
+}
+
+/* 06. Search ====================== */
+.search {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--main-color);
+    z-index: 8888;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.show-search .search {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search form {
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.search form input {
+    line-height: 100px;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid var(--dark-color);
+    background-color: transparent;
+    font-family: inherit;
+    color: #fff;
+    font-size: 2em;
+}
+
+.search form input::placeholder {
+    color: var(--light-color);
+}
+
+.search .search-close {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}

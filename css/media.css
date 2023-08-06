@@ -1,0 +1,102 @@
+@media (max-width: 480px) {
+    .site .section > .container {
+        padding: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .profile,
+    nav .menu-trigger {
+        display: none;
+    }
+
+    .menu {
+        position: relative;
+        flex-direction: row;
+        background-color: transparent;
+        height: auto;
+        width: auto;
+        padding: 0;
+        overflow: unset;
+        transform: none;
+        visibility: visible;
+    }
+
+    .menu > ul {
+        flex-direction: row;
+        gap: 0;
+    }
+
+    .menu li {
+        width: auto;
+    }
+
+    .menu li a {
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: 1em;
+        transition: background-color 0.3s;
+    }
+
+    .menu > ul > li > a:hover {
+        background-color: rgb(255 255 255 / 20%);
+        color: #fff;
+    }
+
+    .menu .search-trigger {
+        position: relative;
+        right: 0;
+    }
+
+    /* Sub menu */
+    .menu .has-child ul {
+        position: absolute;
+        background-color: #fff;
+        min-width: 150px;
+        padding-left: 0;
+        box-shadow: var(--secondary-box-shadow);
+        flex-direction: column;
+        align-items: flex-start;
+        max-height: none;
+        height: auto;
+        overflow: visible;
+        opacity: 0;
+        visibility: hidden;
+        /* display: none; */
+        transition: opacity 0.2s, visibility 0.2s;
+    }
+
+    .menu .has-child:hover > ul {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .menu .has-child ul li a {
+        color: var(--dark-color);
+        font-size: 12px;
+        width: 100%;
+        padding: 1em 1.5em;
+        transition: transform 0.3s, color 0.3s;
+    }
+
+    .menu .has-child ul li a:hover {
+        transform: translateX(10px);
+        color: var(--main-color);
+    }
+
+    .menu ul ul ul {
+        top: 0;
+        left: auto !important;
+        right: 100%;
+    }
+
+    .comment-form form .wrapper {
+        flex-direction: row;
+    }
+
+    .comment-form form .wrapper p {
+        flex: 1 0 33.3333%;
+        margin: 0;
+    }
+}
